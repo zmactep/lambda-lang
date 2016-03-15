@@ -10,8 +10,10 @@ import me.yakovlev.lambda.interactive._
 trait InteractiveParser extends TermParser {
   def statement : Parser[Statement] =
     ( bindS
+    | typeTermS
     | reduceTermS
     | reduceEfTermS
+    | subsTermS
     | showS
     | efTermS
     | clearS
@@ -24,10 +26,22 @@ trait InteractiveParser extends TermParser {
         TermStatement(term)
     }
 
+  def typeTermS : Parser[TypeTermStatement] =
+    ":t" ~> term ^^ {
+      case term =>
+        TypeTermStatement(term)
+    }
+
   def reduceTermS : Parser[ReduceTermStatement] =
     ":r" ~> term ^^ {
       case term =>
         ReduceTermStatement(term)
+    }
+
+  def subsTermS : Parser[SubstituteTermStatement] =
+    ":s" ~> term ^^ {
+      case term =>
+        SubstituteTermStatement(term)
     }
 
   def efTermS : Parser[EnvFreeTermStatement] =

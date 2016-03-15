@@ -13,8 +13,10 @@ case object ShowEnvironmentStatement extends Statement
 case object ClearEnvironmentStatement extends Statement
 
 case class InvalidStatement(error : String) extends Statement
+case class TypeTermStatement(term : Term) extends Statement
 case class BindStatement(variable : Variable, term : Term) extends Statement
 case class TermStatement(term : Term) extends Statement
+case class SubstituteTermStatement(term : Term) extends Statement
 case class EnvFreeTermStatement(term : Term) extends Statement
 case class ReduceTermStatement(term : Term) extends Statement
 case class ReduceEnvFreeTermStatement(term : Term) extends Statement

@@ -5,7 +5,7 @@ import me.yakovlev.lambda.term.{Lambda, Application, Variable, Term}
 /**
   * Created by pavel on 14.03.16.
   */
-object Writer {
+object TermWriter {
   def apply(term : Term) : String =
     write(term, Unknown, Unknown)
 
